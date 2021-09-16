@@ -1,4 +1,5 @@
 
 module.exports = {
-    userController: require('./userController')
+    userController: require('./userController'),
+    galleryController: require('./galleryController')
 }
