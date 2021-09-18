@@ -3,12 +3,14 @@ const { UniqueConstraintError } = require("sequelize/lib/errors");
 const {UserModel} = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+let validateJWT = require('../middleware/validate-jwt');
 
 router.post("/register", async (req, res) => {
- let { email, password } = req.body.user;
+ let { email, username, password } = req.body.user;
  try{
    const User = await UserModel.create({
         email,
+        username,
         password: bcrypt.hashSync(password, 13),
     });
 
@@ -38,7 +40,7 @@ router.post("/login", async (req, res) => {
     try {
         const loginUser = await UserModel.findOne({
             where: {
-                email: email
+                username:username
             },
         });
 
@@ -51,7 +53,7 @@ router.post("/login", async (req, res) => {
                 let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn : 60 * 60 * 24});
 
                 res.status(201).json({
-                    message: "User successfully registered",
+                    message: "Hi there",
                     user: User,
                     sessionToken: token
                 });
