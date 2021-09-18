@@ -2,7 +2,7 @@
 
 let express = require('express');
 let router = express.Router();
-let validateJWT = require('../middelware/validate-jwt');
+let validateJWT = require('../middleware/validate-jwt');
 // Import Gallery Model 
 const { GalleryModel, UserModel } = require('../models')
 

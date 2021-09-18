@@ -1,8 +1,8 @@
 // grab db instance 
-const { sequelize, synceDb } = require('../db');
+const { sequelize } = require('../db');
 const { DataTypes } = require('sequelize')
 
-//grab model funtion
+//grab model function
 const DefineUser = require('./user')
 const DefineGallery = require('./gallery')
 const DefineJournal = require('./journal')
@@ -17,7 +17,7 @@ GalleryModel.belongsTo(UserModel)
 JournalModel.belongsTo(JournalModel)
 
 //Sync
-synceDb(sequelize, true)
+// syncDb(sequelize, true)
 
 module.exports = {
      UserModel,

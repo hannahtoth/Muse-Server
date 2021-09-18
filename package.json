@@ -2,13 +2,13 @@
   "name": "muse-server",
   "version": "1.0.0",
   "description": "the serves side for the Muse app",
-  "main": "app..js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon"
   },
-  "author": "Hannah",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

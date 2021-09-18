@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize')
+const Sequelize  = require('sequelize')
 
 const sequelize = new Sequelize(
     process.env.DB_DBNAME,
@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
 
     );
 
-    async function synceDb(sequelize, options){
+    async function syncDb(sequelize, options){
         const { force, alter} = options
         try {
             if (force)
@@ -28,5 +28,5 @@ const sequelize = new Sequelize(
 
 module.exports = { 
     sequelize,
-    synceDb
+    syncDb
 }
