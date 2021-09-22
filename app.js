@@ -1,9 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const dbConnection = require('./db');
+const { sequelize } = require("./db")
+const dbConnection = sequelize
+const cors = require('cors')
 
 app.use(express.json());
+app.use(cors());
 app.use(require("./middleware/validate-jwt"));
 app.use(require('./middleware/headers'))
 
