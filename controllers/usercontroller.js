@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 let validateJWT = require('../middleware/validate-jwt');
 
 router.post("/register", async (req, res) => {
+    console.log(req)
  let { email, username, password } = req.body.user;
  try{
    const User = await UserModel.create({
@@ -22,6 +23,7 @@ router.post("/register", async (req, res) => {
         sessionToken: token
     });
 } catch(err) {
+    console.log("err", err)
     if (err instanceof UniqueConstraintError) {
         res.status(409).json({
             message: "Email already in use",
@@ -35,7 +37,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    let {email, password } = req.body.user;
+    let {username, password } = req.body.user;
 
     try {
         const loginUser = await UserModel.findOne({
@@ -50,11 +52,11 @@ router.post("/login", async (req, res) => {
 
             if (passwordComparison){
                 
-                let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn : 60 * 60 * 24});
+                let token = jwt.sign({id: loginUser.id}, process.env.JWT_SECRET, {expiresIn : 60 * 60 * 24});
 
                 res.status(201).json({
                     message: "Hi there",
-                    user: User,
+                    user: loginUser,
                     sessionToken: token
                 });
             } else {
