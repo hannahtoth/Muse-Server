@@ -13,7 +13,6 @@ app.use(require("./middleware/headers"));
 const controllers = require("./controllers");
 
 app.use("/user", controllers.userController);
-
 app.use("/gallery", controllers.galleryController);
 app.use("/journal", controllers.journalController);
 
